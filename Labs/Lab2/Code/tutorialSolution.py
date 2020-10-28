@@ -4,8 +4,8 @@ class Heap:
         self.currentLength = 0
     
     def push(self, val):
-        pos = self.currentLength + 1 #index = pos - 1 
         self.currentLength += 1
+        pos = self.currentLength #index = pos - 1 
 
         while pos != 1 and self.data[int(pos / 2) - 1] < val: #while not the root and the value is bigger than it parent
             self.data[pos - 1] = self.data[int(pos / 2) - 1] #move parent to child
@@ -17,10 +17,11 @@ class Heap:
         returnValue = self.data[0] #biggest value
         self.currentLength -= 1
         self.data[0] = self.data[self.currentLength] #move the node at the end of the tree to the root
+        self.data[self.currentLength] = returnValue #swap values
 
         pos = 1 #start at root
         while pos * 2 < self.currentLength + 1: #while not going to go outside the tree
-            if self.data[pos * 2 - 1] > self.data[pos * 2]: #get biggest child
+            if pos * 2 == self.currentLength or self.data[pos * 2 - 1] > self.data[pos * 2]: #get biggest child
                 child = pos * 2 #set largest child index
             else:
                 child = pos * 2 + 1
