@@ -20,7 +20,7 @@ class Heap:
 
         pos = 1 #start at root
         while pos * 2 < self.currentLength + 1: #while not going to go outside the tree
-            if self.data[pos * 2 - 1] > self.data[pos * 2]: #get biggest child
+            if pos * 2 == self.currentLength or self.data[pos * 2 - 1] > self.data[pos * 2]: #get biggest child
                 child = pos * 2 #set largest child index
             else:
                 child = pos * 2 + 1
