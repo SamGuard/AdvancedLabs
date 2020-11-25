@@ -4,8 +4,8 @@ def minimax(node, alpha, beta, depth, player):
 
     if(player == 1):
         best = -1
-        for n in nodes.children:
-            evalFuture = minimax(node, alpha, beta, depth - 1, 2)
+        for n in node.children:
+            evalFuture = minimax(n, alpha, beta, depth - 1, 2)
             alpha = max(evalFuture, alpha)
             best = max(evalFuture, best)
             if(alpha >= beta):
@@ -14,7 +14,7 @@ def minimax(node, alpha, beta, depth, player):
     else:
         worst = 1
         for n in nodes.children:
-            evalFuture = minimax(node, alpha, beta, depth - 1, 2)
+            evalFuture = minimax(n, alpha, beta, depth - 1, 2)
             beta = min(evalFuture, beta)
             worst = max(evalFuture, worst)
             if(alpha >= beta):
