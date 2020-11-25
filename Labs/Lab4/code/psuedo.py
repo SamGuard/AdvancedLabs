@@ -1,11 +1,9 @@
-infinity = 100000000000000000000000 #Representing infinity
-
 def minimax(node, alpha, beta, depth, player):
-    if(depth == MAX_DEPTH):
+    if(depth == MAX_DEPTH or gameWon() == True):
         return estimateE(node.gameState) #Calculates E(x) for the game state represented by the current node
 
     if(player == 1):
-        best = -infinity 
+        best = -1
         for n in nodes.children:
             evalFuture = minimax(node, alpha, beta, depth - 1, 2)
             alpha = max(evalFuture, alpha)
@@ -14,7 +12,7 @@ def minimax(node, alpha, beta, depth, player):
                 break
         return best
     else:
-        best = -infinity 
+        worst = 1
         for n in nodes.children:
             evalFuture = minimax(node, alpha, beta, depth - 1, 2)
             beta = min(evalFuture, beta)
